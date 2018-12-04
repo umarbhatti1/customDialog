@@ -19,21 +19,21 @@ public class AwesomeWarningDialog extends AwesomeDialogBuilder<AwesomeWarningDia
     private Button btDialogOk;
     private RelativeLayout dialogBody;
 
-    public AwesomeWarningDialog(Context context) {
-        super(context);
-
-        setColoredCircle(R.color.dialogWarningBackgroundColor);
-        setDialogIconAndColor(R.drawable.ic_dialog_warning, R.color.black);
-        setButtonBackgroundColor(R.color.dialogWarningBackgroundColor);
-        setCancelable(true);
-    }
-
     {
         btDialogOk = findView(R.id.btDialogOk);
         dialogBody = findView(R.id.dialog_body);
     }
 
-    public AwesomeWarningDialog setDialogBodyBackgroundColor(int color){
+    public AwesomeWarningDialog(Context context) {
+        super(context);
+        setColoredCircle(R.color.dialogWarningBackgroundColor);
+        setDialogIconAndColor(R.drawable.ic_dialog_warning, R.color.black);
+        setButtonBackgroundColor(R.color.dialogWarningBackgroundColor);
+        setCancelable(true);
+        setButtonTextSize(23);
+    }
+
+    public AwesomeWarningDialog setDialogBodyBackgroundColor(int color) {
         if (dialogBody != null) {
             dialogBody.getBackground().setColorFilter(ContextCompat.getColor(getContext(), color), PorterDuff.Mode.SRC_IN);
         }
@@ -73,6 +73,14 @@ public class AwesomeWarningDialog extends AwesomeDialogBuilder<AwesomeWarningDia
     public AwesomeWarningDialog setButtonText(String text) {
         if (btDialogOk != null) {
             btDialogOk.setText(text);
+            btDialogOk.setVisibility(View.VISIBLE);
+        }
+        return this;
+    }
+
+    public AwesomeWarningDialog setButtonTextSize(int size) {
+        if (btDialogOk != null) {
+            btDialogOk.setTextSize(size);
             btDialogOk.setVisibility(View.VISIBLE);
         }
         return this;

@@ -19,6 +19,11 @@ public class AwesomeNoticeDialog extends AwesomeDialogBuilder<AwesomeNoticeDialo
     private Button btDialogOk;
     private RelativeLayout dialogBody;
 
+    {
+        btDialogOk = findView(R.id.btDialogOk);
+        dialogBody = findView(R.id.dialog_body);
+    }
+
     public AwesomeNoticeDialog(Context context) {
         super(context);
 
@@ -26,14 +31,10 @@ public class AwesomeNoticeDialog extends AwesomeDialogBuilder<AwesomeNoticeDialo
         setDialogIconAndColor(R.drawable.ic_notice, R.color.white);
         setButtonBackgroundColor(R.color.dialogNoticeBackgroundColor);
         setCancelable(true);
+        setButtonTextSize(23);
     }
 
-    {
-        btDialogOk = findView(R.id.btDialogOk);
-        dialogBody = findView(R.id.dialog_body);
-    }
-
-    public AwesomeNoticeDialog setDialogBodyBackgroundColor(int color){
+    public AwesomeNoticeDialog setDialogBodyBackgroundColor(int color) {
         if (dialogBody != null) {
             dialogBody.getBackground().setColorFilter(ContextCompat.getColor(getContext(), color), PorterDuff.Mode.SRC_IN);
         }
@@ -72,6 +73,14 @@ public class AwesomeNoticeDialog extends AwesomeDialogBuilder<AwesomeNoticeDialo
     public AwesomeNoticeDialog setButtonText(String text) {
         if (btDialogOk != null) {
             btDialogOk.setText(text);
+            btDialogOk.setVisibility(View.VISIBLE);
+        }
+        return this;
+    }
+
+    public AwesomeNoticeDialog setButtonTextSize(int size) {
+        if (btDialogOk != null) {
+            btDialogOk.setText(size);
             btDialogOk.setVisibility(View.VISIBLE);
         }
         return this;

@@ -26,11 +26,11 @@ public class AwesomeErrorDialog extends AwesomeDialogBuilder<AwesomeErrorDialog>
 
     public AwesomeErrorDialog(Context context) {
         super(context);
-
         setColoredCircle(R.color.dialogErrorBackgroundColor);
         setDialogIconAndColor(R.drawable.ic_dialog_error, R.color.white);
         setButtonBackgroundColor(R.color.dialogErrorBackgroundColor);
         setCancelable(true);
+        setButtonTextSize(23);
     }
 
     public AwesomeErrorDialog setDialogBodyBackgroundColor(int color) {

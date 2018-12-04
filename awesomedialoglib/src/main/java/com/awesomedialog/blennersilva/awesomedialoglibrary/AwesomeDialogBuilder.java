@@ -13,7 +13,6 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -61,17 +60,16 @@ public abstract class AwesomeDialogBuilder<T extends AwesomeDialogBuilder> {
     public void createDialog(AlertDialog.Builder dialogBuilder) {
         dialogView = LayoutInflater.from(dialogBuilder.getContext()).inflate(getLayout(), null);
         dialog = dialogBuilder.setView(dialogView).create();
-
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-            dialog.getWindow().setLayout(700, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
-
         dialogIcon = findView(R.id.dialog_icon);
         tvTitle = findView(R.id.dialog_title);
         tvMessage = findView(R.id.dialog_message);
         coloredCircle = findView(R.id.colored_circle);
+        setTitleTextSize(23);
+        setMessageTextSize(23);
     }
 
     protected abstract int getLayout();

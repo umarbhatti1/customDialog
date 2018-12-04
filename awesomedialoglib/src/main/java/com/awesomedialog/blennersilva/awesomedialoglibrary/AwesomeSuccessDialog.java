@@ -21,15 +21,6 @@ public class AwesomeSuccessDialog extends AwesomeDialogBuilder<AwesomeSuccessDia
     private Button doneButton;
     private RelativeLayout dialogBody;
 
-    public AwesomeSuccessDialog(Context context) {
-        super(context);
-        setColoredCircle(R.color.dialogSuccessBackgroundColor);
-        setDialogIconAndColor(R.drawable.ic_success, R.color.white);
-        setNegativeButtonbackgroundColor(R.color.dialogSuccessBackgroundColor);
-        setPositiveButtonbackgroundColor(R.color.dialogSuccessBackgroundColor);
-        setDoneButtonbackgroundColor(R.color.dialogSuccessBackgroundColor);
-    }
-
     {
         positiveButton = findView(R.id.btDialogYes);
         negativeButton = findView(R.id.btDialogNo);
@@ -37,7 +28,19 @@ public class AwesomeSuccessDialog extends AwesomeDialogBuilder<AwesomeSuccessDia
         dialogBody = findView(R.id.dialog_body);
     }
 
-    public AwesomeSuccessDialog setDialogBodyBackgroundColor(int color){
+    public AwesomeSuccessDialog(Context context) {
+        super(context);
+        setColoredCircle(R.color.dialogSuccessBackgroundColor);
+        setDialogIconAndColor(R.drawable.ic_success, R.color.white);
+        setNegativeButtonbackgroundColor(R.color.dialogSuccessBackgroundColor);
+        setPositiveButtonbackgroundColor(R.color.dialogSuccessBackgroundColor);
+        setDoneButtonbackgroundColor(R.color.dialogSuccessBackgroundColor);
+        setDoneButtonTextSize(23);
+        setPositiveButtonTextSize(23);
+        setNegativeButtonTextSize(23);
+    }
+
+    public AwesomeSuccessDialog setDialogBodyBackgroundColor(int color) {
         if (dialogBody != null) {
             dialogBody.getBackground().setColorFilter(ContextCompat.getColor(getContext(), color), PorterDuff.Mode.SRC_IN);
         }
@@ -139,6 +142,15 @@ public class AwesomeSuccessDialog extends AwesomeDialogBuilder<AwesomeSuccessDia
         return this;
     }
 
+    public AwesomeSuccessDialog setPositiveButtonTextSize(int size) {
+        if (positiveButton != null) {
+            positiveButton.setTextSize(size);
+            positiveButton.setVisibility(View.VISIBLE);
+        }
+
+        return this;
+    }
+
     public AwesomeSuccessDialog setNegativeButtonbackgroundColor(int buttonBackground) {
         if (negativeButton != null) {
             negativeButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), buttonBackground), PorterDuff.Mode.SRC_IN);
@@ -150,6 +162,15 @@ public class AwesomeSuccessDialog extends AwesomeDialogBuilder<AwesomeSuccessDia
     public AwesomeSuccessDialog setNegativeButtonText(String text) {
         if (negativeButton != null) {
             negativeButton.setText(text);
+            negativeButton.setVisibility(View.VISIBLE);
+        }
+
+        return this;
+    }
+
+    public AwesomeSuccessDialog setNegativeButtonTextSize(int size) {
+        if (negativeButton != null) {
+            negativeButton.setTextSize(size);
             negativeButton.setVisibility(View.VISIBLE);
         }
 
@@ -189,7 +210,7 @@ public class AwesomeSuccessDialog extends AwesomeDialogBuilder<AwesomeSuccessDia
         return this;
     }
 
-    public AwesomeSuccessDialog setButtonTextSize(int size) {
+    public AwesomeSuccessDialog setDoneButtonTextSize(int size) {
         if (doneButton != null) {
             doneButton.setTextSize(size);
             doneButton.setVisibility(View.VISIBLE);
