@@ -80,7 +80,6 @@ public class AwesomeErrorDialog extends AwesomeDialogBuilder<AwesomeErrorDialog>
     public AwesomeErrorDialog setButtonTextSize(int size) {
         if (btDialogOk != null) {
             btDialogOk.setTextSize(size);
-            btDialogOk.setVisibility(View.VISIBLE);
         }
         return this;
     }

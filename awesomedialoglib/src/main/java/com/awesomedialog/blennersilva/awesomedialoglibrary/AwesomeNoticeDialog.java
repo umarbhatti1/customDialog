@@ -81,7 +81,6 @@ public class AwesomeNoticeDialog extends AwesomeDialogBuilder<AwesomeNoticeDialo
     public AwesomeNoticeDialog setButtonTextSize(int size) {
         if (btDialogOk != null) {
             btDialogOk.setText(size);
-            btDialogOk.setVisibility(View.VISIBLE);
         }
         return this;
     }

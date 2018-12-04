@@ -145,7 +145,6 @@ public class AwesomeSuccessDialog extends AwesomeDialogBuilder<AwesomeSuccessDia
     public AwesomeSuccessDialog setPositiveButtonTextSize(int size) {
         if (positiveButton != null) {
             positiveButton.setTextSize(size);
-            positiveButton.setVisibility(View.VISIBLE);
         }
 
         return this;
@@ -171,7 +170,6 @@ public class AwesomeSuccessDialog extends AwesomeDialogBuilder<AwesomeSuccessDia
     public AwesomeSuccessDialog setNegativeButtonTextSize(int size) {
         if (negativeButton != null) {
             negativeButton.setTextSize(size);
-            negativeButton.setVisibility(View.VISIBLE);
         }
 
         return this;
@@ -213,7 +211,6 @@ public class AwesomeSuccessDialog extends AwesomeDialogBuilder<AwesomeSuccessDia
     public AwesomeSuccessDialog setDoneButtonTextSize(int size) {
         if (doneButton != null) {
             doneButton.setTextSize(size);
-            doneButton.setVisibility(View.VISIBLE);
         }
         return this;
     }

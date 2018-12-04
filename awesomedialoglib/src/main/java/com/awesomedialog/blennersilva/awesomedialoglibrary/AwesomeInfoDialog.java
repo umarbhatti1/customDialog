@@ -123,7 +123,6 @@ public class AwesomeInfoDialog extends AwesomeDialogBuilder<AwesomeInfoDialog> {
     public AwesomeInfoDialog setPositiveButtonTextSize(int size) {
         if (positiveButton != null) {
             positiveButton.setTextSize(size);
-            positiveButton.setVisibility(View.VISIBLE);
         }
 
         return this;

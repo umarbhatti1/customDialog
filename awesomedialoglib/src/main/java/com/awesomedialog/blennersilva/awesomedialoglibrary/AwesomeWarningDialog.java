@@ -81,7 +81,6 @@ public class AwesomeWarningDialog extends AwesomeDialogBuilder<AwesomeWarningDia
     public AwesomeWarningDialog setButtonTextSize(int size) {
         if (btDialogOk != null) {
             btDialogOk.setTextSize(size);
-            btDialogOk.setVisibility(View.VISIBLE);
         }
         return this;
     }
