@@ -70,7 +70,7 @@ public class AwesomeListDialog {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
         setColoredCircle(R.color.dialogInfoBackgroundColor);
-        setDialogIconAndColor(R.drawable.ic_dialog_info, R.color.white);
+        setDialogIconAndColor(R.drawable.ic_assignment_turned_in_black_24dp, R.color.white);
         setPositiveButtonbackgroundColor(R.color.dialogSuccessBackgroundColor);
         setNegativeButtonbackgroundColor(R.color.dialogErrorBackgroundColor);
         setCancelable(true);
