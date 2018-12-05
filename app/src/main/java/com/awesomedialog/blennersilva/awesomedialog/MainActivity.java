@@ -2,16 +2,19 @@ package com.awesomedialog.blennersilva.awesomedialog;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
-import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeInfoDialog;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeListDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeNoticeDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeWarningDialog;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,18 +77,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showInfoDialog() {
-        new AwesomeInfoDialog(this).setPositiveButtonText(getString(R.string.dialog_ok_button)).show().getWindow().setLayout(500, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        new AwesomeInfoDialog(this)
-//                .setPositiveButtonText("PositiveButton")
-//                .setNeutralButtonText("NeutralButton")
-//                .setNeutralButtonClick(new Closure() {
-//                    @Override
-//                    public void exec() {
-//                        Log.d("TEST","Neutral click");
-//                    }
-//                })
-//                .setNegativeButtonText("NegativeButton")
-//                .show();
+        new AwesomeListDialog(this, Arrays.asList("1", "2", "3"), (position) -> {
+            Log.d("check", String.valueOf(position));
+        }).setPositiveButtonClick(() -> {
+        }).setPositiveButtonClick(() -> {
+        }).setTitle("checking").setPositiveButtonText(getString(R.string.dialog_ok_button))
+                .setNegativeButtonText(getString(R.string.dialog_cancle_button)).show();
+
 
     }
 
