@@ -7,8 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.awesomedialog.blennersilva.awesomedialoglibrary.R;
 
 import java.util.List;
 
@@ -27,15 +30,20 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
     @NonNull
     @Override
     public CustomRecycleViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = mInflater.inflate(android.R.layout.simple_list_item_1, viewGroup, false);
+        View view = mInflater.inflate(R.layout.recycler_view, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CustomRecycleViewAdapter.ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
-        holder.myTextView.setOnClickListener(view -> {
+        String string = mData.get(position);
+        if (true) {
+            holder.imageView.setImageResource(R.drawable.ic_attach_money_black_24dp);
+        } else {
+            holder.imageView.setImageDrawable(null);
+        }
+        holder.myTextView.setText(string);
+        holder.linearLayout.setOnClickListener(view -> {
             rowIndex = position;
             mClickListener.onItemClick(view, position);
             notifyDataSetChanged();
@@ -68,11 +76,13 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
         LinearLayout linearLayout;
+        ImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(android.R.id.text1);
-            //  linearLayout = itemView.findViewById(R.id.tvName);
+            myTextView = itemView.findViewById(R.id.text1);
+            imageView = itemView.findViewById(R.id.imageView4);
+            linearLayout = itemView.findViewById(R.id.linear);
             itemView.setOnClickListener(this);
         }
 

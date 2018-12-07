@@ -3,7 +3,6 @@ package com.awesomedialog.blennersilva.awesomedialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
@@ -47,53 +46,23 @@ public class MainActivity extends AppCompatActivity {
         animalNames.add("Sheep");
         animalNames.add("Goat");
 
-        Button btnError = (Button) findViewById(R.id.btnError);
-        btnError.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showErrorDialog();
-            }
-        });
+        Button btnError = findViewById(R.id.btnError);
+        btnError.setOnClickListener(view -> showErrorDialog());
 
-        Button btnInfo = (Button) findViewById(R.id.btnInfo);
-        btnInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showInfoDialog();
-            }
-        });
+        Button btnInfo = findViewById(R.id.btnInfo);
+        btnInfo.setOnClickListener(view -> showInfoDialog());
 
-        Button btnProgress = (Button) findViewById(R.id.btnProgress);
-        btnProgress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showProgressDialog();
-            }
-        });
+        Button btnProgress = findViewById(R.id.btnProgress);
+        btnProgress.setOnClickListener(view -> showProgressDialog());
 
-        Button btnWarning = (Button) findViewById(R.id.btnWarning);
-        btnWarning.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showWarningDialog();
-            }
-        });
+        Button btnWarning = findViewById(R.id.btnWarning);
+        btnWarning.setOnClickListener(view -> showWarningDialog());
 
-        Button btnNotice = (Button) findViewById(R.id.btnNotice);
-        btnNotice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showNoticeDialog();
-            }
-        });
+        Button btnNotice = findViewById(R.id.btnNotice);
+        btnNotice.setOnClickListener(view -> showNoticeDialog());
 
-        Button btnSuccess = (Button) findViewById(R.id.btnSuccess);
-        btnSuccess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showSuccessDialog();
-            }
-        });
+        Button btnSuccess = findViewById(R.id.btnSuccess);
+        btnSuccess.setOnClickListener(view -> showSuccessDialog());
     }
 
     private void showErrorDialog() {
