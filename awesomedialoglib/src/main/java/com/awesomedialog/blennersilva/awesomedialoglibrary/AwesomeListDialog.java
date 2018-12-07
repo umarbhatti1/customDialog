@@ -9,35 +9,39 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.awesomedialog.blennersilva.awesomedialoglibrary.interfaces.Closure;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.interfaces.CustomRecycleViewAdapter;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.interfaces.ListViewListener;
 
 import java.util.List;
 
-public class AwesomeListDialog {
+public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickListener {
 
     private Dialog dialog;
     private View dialogView;
     private ImageView dialogIcon;
     private TextView tvTitle;
-    private ListView listView;
+    private RecyclerView recyclerView;
     private RelativeLayout coloredCircle;
     private Context context;
     private Button positiveButton;
     private Button negativeButton;
     private RelativeLayout dialogBody;
+    private CustomRecycleViewAdapter adapter;
+    private ListViewListener listViewListener;
 
     public AwesomeListDialog(Context context, List<String> list, ListViewListener listViewListener) {
         this.context = context;
@@ -45,26 +49,23 @@ public class AwesomeListDialog {
     }
 
     public void createDialog(Context context, List<String> list, final ListViewListener listViewListener) {
+        this.listViewListener = listViewListener;
         dialog = new Dialog(context);
         dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_list, null);
         dialogIcon = findView(R.id.dialog_icon);
         tvTitle = findView(R.id.dialog_title);
-        listView = findView(R.id.dialog_message);
+        recyclerView = findView(R.id.dialog_message);
         coloredCircle = findView(R.id.colored_circle);
         positiveButton = findView(R.id.btDialogYes);
         negativeButton = findView(R.id.btDialogNo);
         dialogBody = findView(R.id.dialog_body);
-        listView.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, list));
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            for (int i = 0; i < listView.getChildCount(); i++) {
-                if (position == i) {
-                    listView.getChildAt(position).setBackground(new ColorDrawable(Color.GRAY));
-                } else {
-                    listView.getChildAt(i).setBackground(new ColorDrawable(Color.TRANSPARENT));
-                }
-            }
-            listViewListener.onClick(position);
-        });
+        adapter = new CustomRecycleViewAdapter(context, list);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        adapter.setClickListener(this);
         dialog.setContentView(dialogView);
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -200,8 +201,8 @@ public class AwesomeListDialog {
         return tvTitle;
     }
 
-    public ListView getListView() {
-        return listView;
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
     }
 
     public RelativeLayout getColoredCircle() {
@@ -273,5 +274,10 @@ public class AwesomeListDialog {
 
     public RelativeLayout getDialogBody() {
         return dialogBody;
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        listViewListener.onClick(position);
     }
 }

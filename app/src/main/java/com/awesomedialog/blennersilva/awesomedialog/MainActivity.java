@@ -14,14 +14,38 @@ import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeWarningDialog;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<String> animalNames = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        animalNames = new ArrayList<>();
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("Goat");
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("Goat");
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("Goat");
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("Goat");
 
         Button btnError = (Button) findViewById(R.id.btnError);
         btnError.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showInfoDialog() {
-        new AwesomeListDialog(this, Arrays.asList("1", "2", "3"), (position) -> {
+        new AwesomeListDialog(this, animalNames, (position) -> {
             Log.d("check", String.valueOf(position));
         }).setPositiveButtonClick(() -> {
         }).setPositiveButtonClick(() -> {
