@@ -50,6 +50,38 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
 
     public void createDialog(Context context, List<String> list, final ListViewListener listViewListener) {
         this.listViewListener = listViewListener;
+        initializeVariables(context);
+        createRecycler(context, list);
+        dialog.setContentView(dialogView);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        setColorAndIcon();
+    }
+
+    private void createRecycler(Context context, List<String> list) {
+        adapter = new CustomRecycleViewAdapter(context, list);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        adapter.setClickListener(this);
+    }
+
+
+    private void setColorAndIcon() {
+        setColoredCircle(R.color.dialogListBackgroundColor);
+        setDialogIconAndColor(R.drawable.ic_assignment_turned_in_black_24dp, R.color.white);
+        setPositiveButtonbackgroundColor(R.color.dialogSuccessBackgroundColor);
+        setNegativeButtonbackgroundColor(R.color.dialogErrorBackgroundColor);
+        setCancelable(true);
+        setNegativeButtonTextSize(23);
+        setPositiveButtonTextSize(23);
+        setTitleTextSize(23);
+    }
+
+    private void initializeVariables(Context context) {
         dialog = new Dialog(context);
         dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_list, null);
         dialogIcon = findView(R.id.dialog_icon);
@@ -59,25 +91,6 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         positiveButton = findView(R.id.btDialogYes);
         negativeButton = findView(R.id.btDialogNo);
         dialogBody = findView(R.id.dialog_body);
-        adapter = new CustomRecycleViewAdapter(context, list);
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        recyclerView.setLayoutManager(layoutManager);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
-        adapter.setClickListener(this);
-        dialog.setContentView(dialogView);
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }
-        setColoredCircle(R.color.dialogListBackgroundColor);
-        setDialogIconAndColor(R.drawable.ic_assignment_turned_in_black_24dp, R.color.white);
-        setPositiveButtonbackgroundColor(R.color.dialogSuccessBackgroundColor);
-        setNegativeButtonbackgroundColor(R.color.dialogErrorBackgroundColor);
-        setCancelable(true);
-        setNegativeButtonTextSize(23);
-        setPositiveButtonTextSize(23);
-        setTitleTextSize(23);
     }
 
     protected <ViewClass extends View> ViewClass findView(int id) {

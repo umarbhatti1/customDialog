@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.awesomedialog.blennersilva.awesomedialoglibrary.R;
-
 import java.util.List;
 
 public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycleViewAdapter.ViewHolder> {
@@ -39,7 +37,7 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
         holder.myTextView.setText(animal);
         holder.myTextView.setOnClickListener(view -> {
             rowIndex = position;
-            mClickListener.onItemClick(view,position);
+            mClickListener.onItemClick(view, position);
             notifyDataSetChanged();
         });
         if (rowIndex == position) {
@@ -74,7 +72,7 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(android.R.id.text1);
-          //  linearLayout = itemView.findViewById(R.id.tvName);
+            //  linearLayout = itemView.findViewById(R.id.tvName);
             itemView.setOnClickListener(this);
         }
 
