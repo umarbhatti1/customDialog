@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showInfoDialog() {
         final int[] selected = new int[1];
-        new AwesomeRecyclerViewDialog(this, animalNames, booleanList, (position) -> {
+        new AwesomeRecyclerViewDialog(this, animalNames, (position) -> {
             selected[0] = position;
             Log.d("check", String.valueOf(position));
         }).setPositiveButtonClick(() -> {

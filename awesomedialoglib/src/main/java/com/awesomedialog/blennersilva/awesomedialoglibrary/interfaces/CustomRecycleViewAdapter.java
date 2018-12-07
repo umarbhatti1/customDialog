@@ -7,53 +7,43 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.awesomedialog.blennersilva.awesomedialoglibrary.R;
 
 import java.util.List;
 
 public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycleViewAdapter.ViewHolder> {
 
     private List<String> mData;
-    private List<Boolean> billable;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private int rowIndex = -1;
 
-    public CustomRecycleViewAdapter(Context context, List<String> data, List<Boolean> booleanList) {
+    public CustomRecycleViewAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
-        this.billable = booleanList;
         this.mData = data;
     }
 
     @NonNull
     @Override
     public CustomRecycleViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = mInflater.inflate(R.layout.recycler_view, viewGroup, false);
+        View view = mInflater.inflate(android.R.layout.simple_list_item_1, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CustomRecycleViewAdapter.ViewHolder holder, int position) {
-        String string = mData.get(position);
-        if (billable.get(position)) {
-            holder.imageView.setImageResource(R.drawable.ic_attach_money_black_24dp);
-        } else {
-            holder.imageView.setImageDrawable(null);
-        }
-        holder.myTextView.setText(string);
-        holder.linearLayout.setOnClickListener(view -> {
+        String animal = mData.get(position);
+        holder.myTextView.setText(animal);
+        holder.myTextView.setOnClickListener(view -> {
             rowIndex = position;
             mClickListener.onItemClick(view, position);
             notifyDataSetChanged();
         });
         if (rowIndex == position) {
-            holder.linearLayout.setBackgroundColor(Color.GRAY);
+            holder.myTextView.setBackgroundColor(Color.GRAY);
         } else {
-            holder.linearLayout.setBackgroundColor(Color.TRANSPARENT);
+            holder.myTextView.setBackgroundColor(Color.TRANSPARENT);
         }
     }
 
@@ -78,13 +68,10 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
         LinearLayout linearLayout;
-        ImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.text1);
-            imageView = itemView.findViewById(R.id.imageView4);
-            linearLayout = itemView.findViewById(R.id.linear);
+            myTextView = itemView.findViewById(android.R.id.text1);
             itemView.setOnClickListener(this);
         }
 
