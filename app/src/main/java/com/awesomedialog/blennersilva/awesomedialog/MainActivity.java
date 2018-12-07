@@ -3,73 +3,86 @@ package com.awesomedialog.blennersilva.awesomedialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
-import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeListDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeNoticeDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeRecyclerViewDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeWarningDialog;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<String> animalNames = new ArrayList<>();
+    ArrayList<Boolean> booleanList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("Goat");
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("Goat");
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("Goat");
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("Goat");
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(true);
+        booleanList.add(true);
+        booleanList.add(false);
 
-        Button btnError = (Button) findViewById(R.id.btnError);
-        btnError.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showErrorDialog();
-            }
-        });
+        Button btnError = findViewById(R.id.btnError);
+        btnError.setOnClickListener(view -> showErrorDialog());
 
-        Button btnInfo = (Button) findViewById(R.id.btnInfo);
-        btnInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showInfoDialog();
-            }
-        });
+        Button btnInfo = findViewById(R.id.btnInfo);
+        btnInfo.setOnClickListener(view -> showInfoDialog());
 
-        Button btnProgress = (Button) findViewById(R.id.btnProgress);
-        btnProgress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showProgressDialog();
-            }
-        });
+        Button btnProgress = findViewById(R.id.btnProgress);
+        btnProgress.setOnClickListener(view -> showProgressDialog());
 
-        Button btnWarning = (Button) findViewById(R.id.btnWarning);
-        btnWarning.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showWarningDialog();
-            }
-        });
+        Button btnWarning = findViewById(R.id.btnWarning);
+        btnWarning.setOnClickListener(view -> showWarningDialog());
 
-        Button btnNotice = (Button) findViewById(R.id.btnNotice);
-        btnNotice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showNoticeDialog();
-            }
-        });
+        Button btnNotice = findViewById(R.id.btnNotice);
+        btnNotice.setOnClickListener(view -> showNoticeDialog());
 
-        Button btnSuccess = (Button) findViewById(R.id.btnSuccess);
-        btnSuccess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showSuccessDialog();
-            }
-        });
+        Button btnSuccess = findViewById(R.id.btnSuccess);
+        btnSuccess.setOnClickListener(view -> showSuccessDialog());
     }
 
     private void showErrorDialog() {
@@ -77,10 +90,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showInfoDialog() {
-        new AwesomeListDialog(this, Arrays.asList("1", "2", "3"), (position) -> {
+        final int[] selected = new int[1];
+        new AwesomeRecyclerViewDialog(this, animalNames, booleanList, (position) -> {
+            selected[0] = position;
             Log.d("check", String.valueOf(position));
         }).setPositiveButtonClick(() -> {
-        }).setPositiveButtonClick(() -> {
+            Toast.makeText(this, String.valueOf(selected[0]), Toast.LENGTH_LONG).show();
+        }).setNegativeButtonClick(() -> {
         }).setTitle("checking").setPositiveButtonText(getString(R.string.dialog_ok_button))
                 .setNegativeButtonText(getString(R.string.dialog_cancle_button)).show();
 
