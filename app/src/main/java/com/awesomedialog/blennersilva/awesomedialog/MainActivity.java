@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
-import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeRecyclerViewDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeNoticeDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeRecyclerViewDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeWarningDialog;
 
@@ -18,13 +18,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<String> animalNames = new ArrayList<>();
+    ArrayList<Boolean> booleanList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        animalNames = new ArrayList<>();
         animalNames.add("Horse");
         animalNames.add("Cow");
         animalNames.add("Camel");
@@ -45,6 +44,26 @@ public class MainActivity extends AppCompatActivity {
         animalNames.add("Camel");
         animalNames.add("Sheep");
         animalNames.add("Goat");
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(false);
+        booleanList.add(true);
+        booleanList.add(true);
+        booleanList.add(true);
+        booleanList.add(false);
 
         Button btnError = findViewById(R.id.btnError);
         btnError.setOnClickListener(view -> showErrorDialog());
@@ -70,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showInfoDialog() {
-        new AwesomeRecyclerViewDialog(this, animalNames, (position) -> {
+        new AwesomeRecyclerViewDialog(this, animalNames,booleanList, (position) -> {
             Log.d("check", String.valueOf(position));
         }).setPositiveButtonClick(() -> {
         }).setPositiveButtonClick(() -> {

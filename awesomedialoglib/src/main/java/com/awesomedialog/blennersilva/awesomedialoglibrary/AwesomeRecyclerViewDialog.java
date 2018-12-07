@@ -42,15 +42,15 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
     private RelativeLayout dialogBody;
     private ListViewListener listViewListener;
 
-    public AwesomeRecyclerViewDialog(Context context, List<String> list, ListViewListener listViewListener) {
+    public AwesomeRecyclerViewDialog(Context context, List<String> list, List<Boolean> booleanList, ListViewListener listViewListener) {
         this.context = context;
-        createDialog(context, list, listViewListener);
+        createDialog(context, list, booleanList, listViewListener);
     }
 
-    public void createDialog(Context context, List<String> list, final ListViewListener listViewListener) {
+    public void createDialog(Context context, List<String> list, List<Boolean> booleanList, final ListViewListener listViewListener) {
         this.listViewListener = listViewListener;
         initializeVariables(context);
-        createRecycler(context, list);
+        createRecycler(context, list,booleanList);
         dialog.setContentView(dialogView);
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -58,8 +58,8 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
         setColorAndIcon();
     }
 
-    private void createRecycler(Context context, List<String> list) {
-        CustomRecycleViewAdapter adapter = new CustomRecycleViewAdapter(context, list);
+    private void createRecycler(Context context, List<String> list, List<Boolean> booleanList) {
+        CustomRecycleViewAdapter adapter = new CustomRecycleViewAdapter(context, list,booleanList);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);

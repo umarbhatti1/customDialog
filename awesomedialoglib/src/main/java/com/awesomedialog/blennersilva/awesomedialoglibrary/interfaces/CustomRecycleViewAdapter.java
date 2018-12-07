@@ -18,12 +18,14 @@ import java.util.List;
 public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycleViewAdapter.ViewHolder> {
 
     private List<String> mData;
+    private List<Boolean> billable;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private int rowIndex = -1;
 
-    public CustomRecycleViewAdapter(Context context, List<String> data) {
+    public CustomRecycleViewAdapter(Context context, List<String> data, List<Boolean> booleanList) {
         this.mInflater = LayoutInflater.from(context);
+        this.billable = booleanList;
         this.mData = data;
     }
 
@@ -37,10 +39,12 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
     @Override
     public void onBindViewHolder(@NonNull CustomRecycleViewAdapter.ViewHolder holder, int position) {
         String string = mData.get(position);
-        if (true) {
+        if (billable.get(position)) {
             holder.imageView.setImageResource(R.drawable.ic_attach_money_black_24dp);
+            holder.myTextView.setPadding(0, 0, 0, 0);
         } else {
             holder.imageView.setImageDrawable(null);
+            holder.myTextView.setPadding(80, 0, 0, 0);
         }
         holder.myTextView.setText(string);
         holder.linearLayout.setOnClickListener(view -> {
@@ -49,9 +53,9 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
             notifyDataSetChanged();
         });
         if (rowIndex == position) {
-            holder.myTextView.setBackgroundColor(Color.GRAY);
+            holder.linearLayout.setBackgroundColor(Color.GRAY);
         } else {
-            holder.myTextView.setBackgroundColor(Color.TRANSPARENT);
+            holder.linearLayout.setBackgroundColor(Color.TRANSPARENT);
         }
     }
 
