@@ -122,6 +122,7 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
         positiveButton.setOnClickListener(view -> {
             if (selectedYes != null) {
                 selectedYes.exec();
+                hide();
             }
 
         });

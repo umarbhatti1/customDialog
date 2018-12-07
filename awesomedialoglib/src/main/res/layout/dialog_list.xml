@@ -29,7 +29,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/dialog_message"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="300dp"
             android:layout_below="@+id/dialog_title"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"

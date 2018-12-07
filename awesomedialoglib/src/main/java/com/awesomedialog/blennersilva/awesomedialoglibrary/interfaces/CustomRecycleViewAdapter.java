@@ -41,10 +41,8 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
         String string = mData.get(position);
         if (billable.get(position)) {
             holder.imageView.setImageResource(R.drawable.ic_attach_money_black_24dp);
-            holder.myTextView.setPadding(0, 0, 0, 0);
         } else {
             holder.imageView.setImageDrawable(null);
-            holder.myTextView.setPadding(80, 0, 0, 0);
         }
         holder.myTextView.setText(string);
         holder.linearLayout.setOnClickListener(view -> {
