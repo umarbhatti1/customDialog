@@ -40,17 +40,18 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
     private Button positiveButton;
     private Button negativeButton;
     private RelativeLayout dialogBody;
+    private CustomRecycleViewAdapter adapter;
     private ListViewListener listViewListener;
 
-    public AwesomeRecyclerViewDialog(Context context, List<String> list, List<Boolean> booleanList, ListViewListener listViewListener) {
+    public AwesomeRecyclerViewDialog(Context context, List<String> list,  ListViewListener listViewListener) {
         this.context = context;
-        createDialog(context, list, booleanList, listViewListener);
+        createDialog(context, list, listViewListener);
     }
 
-    public void createDialog(Context context, List<String> list, List<Boolean> booleanList, final ListViewListener listViewListener) {
+    public void createDialog(Context context, List<String> list, final ListViewListener listViewListener) {
         this.listViewListener = listViewListener;
         initializeVariables(context);
-        createRecycler(context, list, booleanList);
+        createRecycler(context, list);
         dialog.setContentView(dialogView);
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -58,8 +59,8 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
         setColorAndIcon();
     }
 
-    private void createRecycler(Context context, List<String> list, List<Boolean> booleanList) {
-        CustomRecycleViewAdapter adapter = new CustomRecycleViewAdapter(context, list, booleanList);
+    private void createRecycler(Context context, List<String> list) {
+        adapter = new CustomRecycleViewAdapter(context, list);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
@@ -122,6 +123,7 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
         positiveButton.setOnClickListener(view -> {
             if (selectedYes != null) {
                 selectedYes.exec();
+                hide();
             }
 
         });
