@@ -35,6 +35,7 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
     public void onBindViewHolder(@NonNull CustomRecycleViewAdapter.ViewHolder holder, int position) {
         String animal = mData.get(position);
         holder.myTextView.setText(animal);
+        holder.myTextView.setTextSize(20);
         holder.myTextView.setOnClickListener(view -> {
             rowIndex = position;
             mClickListener.onItemClick(view, position);

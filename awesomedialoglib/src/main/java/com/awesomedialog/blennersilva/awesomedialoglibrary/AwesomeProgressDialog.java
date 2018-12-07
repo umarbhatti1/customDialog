@@ -22,7 +22,7 @@ public class AwesomeProgressDialog extends AwesomeDialogBuilder<AwesomeProgressD
 
     public AwesomeProgressDialog(Context context) {
         super(context);
-        setColoredCircle(R.color.dialogProgressBackgroundColor);
+        setColoredCircle(R.color.dialogListBackgroundColor);
         setProgressBarColor(R.color.white);
     }
 
