@@ -3,6 +3,7 @@ package com.awesomedialog.blennersilva.awesomedialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
@@ -103,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
                         dialog.hide();
                     }
                 }).setNegativeButtonClick(dialog::hide);
-        dialog.show();
+        dialog.show().getWindow().setLayout(670,420);
+        dialog.show().getWindow().setGravity(Gravity.TOP);
 
 
     }
