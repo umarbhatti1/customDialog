@@ -43,7 +43,7 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
     private CustomRecycleViewAdapter adapter;
     private ListViewListener listViewListener;
 
-    public AwesomeRecyclerViewDialog(Context context, List<String> list,  ListViewListener listViewListener) {
+    public AwesomeRecyclerViewDialog(Context context, List<String> list, ListViewListener listViewListener) {
         this.context = context;
         createDialog(context, list, listViewListener);
     }
@@ -123,7 +123,6 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
         positiveButton.setOnClickListener(view -> {
             if (selectedYes != null) {
                 selectedYes.exec();
-                hide();
             }
 
         });
@@ -135,7 +134,6 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
         negativeButton.setOnClickListener(view -> {
             if (selectedNo != null) {
                 selectedNo.exec();
-                hide();
             }
         });
 

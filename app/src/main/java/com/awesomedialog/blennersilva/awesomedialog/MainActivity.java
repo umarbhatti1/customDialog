@@ -90,15 +90,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showInfoDialog() {
-        final int[] selected = new int[1];
-        new AwesomeRecyclerViewDialog(this, animalNames, (position) -> {
+        final int[] selected = {-1};
+        AwesomeRecyclerViewDialog dialog = new AwesomeRecyclerViewDialog(this, animalNames, (position) -> {
             selected[0] = position;
             Log.d("check", String.valueOf(position));
-        }).setPositiveButtonClick(() -> {
-            Toast.makeText(this, String.valueOf(selected[0]), Toast.LENGTH_LONG).show();
-        }).setNegativeButtonClick(() -> {
-        }).setTitle("checking").setPositiveButtonText(getString(R.string.dialog_ok_button))
-                .setNegativeButtonText(getString(R.string.dialog_cancle_button)).show();
+        }).setTitle("checking");
+        dialog.setPositiveButtonText(getString(R.string.dialog_ok_button))
+                .setNegativeButtonText(getString(R.string.dialog_cancle_button))
+                .setPositiveButtonClick(() -> {
+                    if (selected[0] != -1) {
+                        Toast.makeText(this, String.valueOf(selected[0]), Toast.LENGTH_LONG).show();
+                        dialog.hide();
+                    }
+                }).setNegativeButtonClick(dialog::hide);
+        dialog.show();
 
 
     }
