@@ -50,7 +50,7 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
     public void createDialog(Context context, List<String> list, List<Boolean> booleanList, final ListViewListener listViewListener) {
         this.listViewListener = listViewListener;
         initializeVariables(context);
-        createRecycler(context, list,booleanList);
+        createRecycler(context, list, booleanList);
         dialog.setContentView(dialogView);
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -59,7 +59,7 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
     }
 
     private void createRecycler(Context context, List<String> list, List<Boolean> booleanList) {
-        CustomRecycleViewAdapter adapter = new CustomRecycleViewAdapter(context, list,booleanList);
+        CustomRecycleViewAdapter adapter = new CustomRecycleViewAdapter(context, list, booleanList);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
@@ -133,6 +133,7 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
         negativeButton.setOnClickListener(view -> {
             if (selectedNo != null) {
                 selectedNo.exec();
+                hide();
             }
         });
 

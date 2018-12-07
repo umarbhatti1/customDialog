@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeNoticeDialog;
@@ -89,10 +90,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showInfoDialog() {
-        new AwesomeRecyclerViewDialog(this, animalNames,booleanList, (position) -> {
+        final int[] selected = new int[1];
+        new AwesomeRecyclerViewDialog(this, animalNames, booleanList, (position) -> {
+            selected[0] = position;
             Log.d("check", String.valueOf(position));
         }).setPositiveButtonClick(() -> {
-        }).setPositiveButtonClick(() -> {
+            Toast.makeText(this, String.valueOf(selected[0]), Toast.LENGTH_LONG).show();
+        }).setNegativeButtonClick(() -> {
         }).setTitle("checking").setPositiveButtonText(getString(R.string.dialog_ok_button))
                 .setNegativeButtonText(getString(R.string.dialog_cancle_button)).show();
 
