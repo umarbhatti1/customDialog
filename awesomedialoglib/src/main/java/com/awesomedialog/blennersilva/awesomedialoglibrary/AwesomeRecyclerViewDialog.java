@@ -28,7 +28,7 @@ import com.awesomedialog.blennersilva.awesomedialoglibrary.interfaces.ListViewLi
 
 import java.util.List;
 
-public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickListener {
+public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemClickListener {
 
     private Dialog dialog;
     private View dialogView;
@@ -40,10 +40,9 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
     private Button positiveButton;
     private Button negativeButton;
     private RelativeLayout dialogBody;
-    private CustomRecycleViewAdapter adapter;
     private ListViewListener listViewListener;
 
-    public AwesomeListDialog(Context context, List<String> list, ListViewListener listViewListener) {
+    public AwesomeRecyclerViewDialog(Context context, List<String> list, ListViewListener listViewListener) {
         this.context = context;
         createDialog(context, list, listViewListener);
     }
@@ -60,7 +59,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
     }
 
     private void createRecycler(Context context, List<String> list) {
-        adapter = new CustomRecycleViewAdapter(context, list);
+        CustomRecycleViewAdapter adapter = new CustomRecycleViewAdapter(context, list);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
@@ -97,12 +96,12 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return (ViewClass) dialogView.findViewById(id);
     }
 
-    public AwesomeListDialog setCancelable(boolean cancelable) {
+    public AwesomeRecyclerViewDialog setCancelable(boolean cancelable) {
         dialog.setCancelable(cancelable);
         return this;
     }
 
-    public AwesomeListDialog setNegativeButtonText(String text) {
+    public AwesomeRecyclerViewDialog setNegativeButtonText(String text) {
         if (negativeButton != null) {
             negativeButton.setText(text);
             negativeButton.setVisibility(View.VISIBLE);
@@ -110,7 +109,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return this;
     }
 
-    public AwesomeListDialog setPositiveButtonText(String text) {
+    public AwesomeRecyclerViewDialog setPositiveButtonText(String text) {
         if (positiveButton != null) {
             positiveButton.setText(text);
             positiveButton.setVisibility(View.VISIBLE);
@@ -119,7 +118,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return this;
     }
 
-    public AwesomeListDialog setPositiveButtonClick(@Nullable final Closure selectedYes) {
+    public AwesomeRecyclerViewDialog setPositiveButtonClick(@Nullable final Closure selectedYes) {
         positiveButton.setOnClickListener(view -> {
             if (selectedYes != null) {
                 selectedYes.exec();
@@ -130,7 +129,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return this;
     }
 
-    public AwesomeListDialog setNegativeButtonClick(@Nullable final Closure selectedNo) {
+    public AwesomeRecyclerViewDialog setNegativeButtonClick(@Nullable final Closure selectedNo) {
         negativeButton.setOnClickListener(view -> {
             if (selectedNo != null) {
                 selectedNo.exec();
@@ -140,7 +139,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return this;
     }
 
-    public AwesomeListDialog setDialogIconAndColor(int icon, int iconColor) {
+    public AwesomeRecyclerViewDialog setDialogIconAndColor(int icon, int iconColor) {
         if (dialogIcon != null) {
             Animation alertIcon = AnimationUtils.loadAnimation(getContext(), R.anim.rubber_band);
             dialogIcon.startAnimation(alertIcon);
@@ -150,7 +149,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return this;
     }
 
-    public AwesomeListDialog setPositiveButtonTextSize(int size) {
+    public AwesomeRecyclerViewDialog setPositiveButtonTextSize(int size) {
         if (positiveButton != null) {
             positiveButton.setTextSize(size);
         }
@@ -158,7 +157,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return this;
     }
 
-    public AwesomeListDialog setNegativeButtonTextSize(int size) {
+    public AwesomeRecyclerViewDialog setNegativeButtonTextSize(int size) {
         if (negativeButton != null) {
             negativeButton.setTextSize(size);
         }
@@ -182,7 +181,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return drawable;
     }
 
-    public AwesomeListDialog setNegativeButtonbackgroundColor(int buttonBackground) {
+    public AwesomeRecyclerViewDialog setNegativeButtonbackgroundColor(int buttonBackground) {
         if (negativeButton != null) {
             negativeButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), buttonBackground), PorterDuff.Mode.SRC_IN);
         }
@@ -190,7 +189,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return this;
     }
 
-    public AwesomeListDialog setPositiveButtonbackgroundColor(int buttonBackground) {
+    public AwesomeRecyclerViewDialog setPositiveButtonbackgroundColor(int buttonBackground) {
         if (positiveButton != null) {
             positiveButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), buttonBackground), PorterDuff.Mode.SRC_IN);
         }
@@ -222,7 +221,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return coloredCircle;
     }
 
-    public AwesomeListDialog setColoredCircle(int color) {
+    public AwesomeRecyclerViewDialog setColoredCircle(int color) {
         if (coloredCircle != null) {
             coloredCircle.getBackground().setColorFilter(ContextCompat.getColor(getContext(), color), PorterDuff.Mode.SRC_IN);
         }
@@ -230,7 +229,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return this;
     }
 
-    public AwesomeListDialog setTitleTextSize(int size) {
+    public AwesomeRecyclerViewDialog setTitleTextSize(int size) {
         if (tvTitle != null) {
             tvTitle.setTextSize(size);
         }
@@ -238,7 +237,7 @@ public class AwesomeListDialog implements CustomRecycleViewAdapter.ItemClickList
         return this;
     }
 
-    public AwesomeListDialog setTitle(CharSequence title) {
+    public AwesomeRecyclerViewDialog setTitle(CharSequence title) {
         if (tvTitle != null) {
             tvTitle.setText(title);
         }

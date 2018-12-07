@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
-import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeListDialog;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeRecyclerViewDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeNoticeDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showInfoDialog() {
-        new AwesomeListDialog(this, animalNames, (position) -> {
+        new AwesomeRecyclerViewDialog(this, animalNames, (position) -> {
             Log.d("check", String.valueOf(position));
         }).setPositiveButtonClick(() -> {
         }).setPositiveButtonClick(() -> {
