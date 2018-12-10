@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.CountDownTimer;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -179,21 +178,11 @@ public abstract class AwesomeDialogBuilder<T extends AwesomeDialogBuilder> {
         return dialog;
     }
 
-    public Toast showToast(int duration) {
+    public Toast showToast() {
         try {
             if (context instanceof Activity) {
                 if (!((Activity) context).isFinishing()) {
                     toast.show();
-                    new CountDownTimer(duration, 500) {
-                        public void onTick(long millisUntilFinished) {
-                            toast.show();
-                        }
-
-                        public void onFinish() {
-                            toast.cancel();
-                        }
-
-                    }.start();
                 }
             } else {
                 toast.show();

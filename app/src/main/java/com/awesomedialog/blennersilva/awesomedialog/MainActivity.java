@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private void showErrorDialog() {
         new AwesomeErrorToast(this).setTitle("Error!").setMessage("Access Denied").setButtonText("Retry")
                 .setErrorButtonClick(() -> {
-                }).showToast(5000);
+                }).showToast();
     }
 
     private void showInfoDialog() {
