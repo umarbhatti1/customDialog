@@ -6,7 +6,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
@@ -15,10 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -32,10 +28,8 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
 
     private Dialog dialog;
     private View dialogView;
-    private ImageView dialogIcon;
     private TextView tvTitle;
     private RecyclerView recyclerView;
-    private RelativeLayout coloredCircle;
     private Context context;
     private Button positiveButton;
     private Button negativeButton;
@@ -71,10 +65,8 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
 
 
     private void setColorAndIcon() {
-        setColoredCircle(R.color.dialogListBackgroundColor);
-        setDialogIconAndColor(R.drawable.ic_assignment_turned_in_black_24dp, R.color.white);
-        setPositiveButtonbackgroundColor(R.color.dialogSuccessBackgroundColor);
-        setNegativeButtonbackgroundColor(R.color.dialogErrorBackgroundColor);
+        setPositiveButtonbackgroundColor(R.color.dialogListBackgroundColor);
+        setNegativeButtonbackgroundColor(R.color.dialogNoticeBackgroundColor);
         setCancelable(true);
         setNegativeButtonTextSize(23);
         setPositiveButtonTextSize(23);
@@ -84,10 +76,8 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
     private void initializeVariables(Context context) {
         dialog = new Dialog(context);
         dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_list, null);
-        dialogIcon = findView(R.id.dialog_icon);
         tvTitle = findView(R.id.dialog_title);
         recyclerView = findView(R.id.dialog_message);
-        coloredCircle = findView(R.id.colored_circle);
         positiveButton = findView(R.id.btDialogYes);
         negativeButton = findView(R.id.btDialogNo);
         dialogBody = findView(R.id.dialog_body);
@@ -124,7 +114,6 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
             if (selectedYes != null) {
                 selectedYes.exec();
             }
-
         });
 
         return this;
@@ -136,25 +125,14 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
                 selectedNo.exec();
             }
         });
-
         return this;
     }
 
-    public AwesomeRecyclerViewDialog setDialogIconAndColor(int icon, int iconColor) {
-        if (dialogIcon != null) {
-            Animation alertIcon = AnimationUtils.loadAnimation(getContext(), R.anim.rubber_band);
-            dialogIcon.startAnimation(alertIcon);
-
-            dialogIcon.setImageDrawable(drawableColorChange(getContext(), icon, iconColor));
-        }
-        return this;
-    }
 
     public AwesomeRecyclerViewDialog setPositiveButtonTextSize(int size) {
         if (positiveButton != null) {
             positiveButton.setTextSize(size);
         }
-
         return this;
     }
 
@@ -162,24 +140,7 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
         if (negativeButton != null) {
             negativeButton.setTextSize(size);
         }
-
         return this;
-    }
-
-    public Drawable drawableColorChange(Context context, int icon, int color) {
-        Drawable drawable;
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            drawable = context.getDrawable(icon);
-        } else {
-            drawable = context.getResources().getDrawable(icon);
-        }
-
-        if (drawable != null) {
-            drawable.setColorFilter(ContextCompat.getColor(context, color), PorterDuff.Mode.SRC_IN);
-        }
-
-        return drawable;
     }
 
     public AwesomeRecyclerViewDialog setNegativeButtonbackgroundColor(int buttonBackground) {
@@ -206,9 +167,6 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
         return dialogView;
     }
 
-    public ImageView getDialogIcon() {
-        return dialogIcon;
-    }
 
     public TextView getTvTitle() {
         return tvTitle;
@@ -218,17 +176,6 @@ public class AwesomeRecyclerViewDialog implements CustomRecycleViewAdapter.ItemC
         return recyclerView;
     }
 
-    public RelativeLayout getColoredCircle() {
-        return coloredCircle;
-    }
-
-    public AwesomeRecyclerViewDialog setColoredCircle(int color) {
-        if (coloredCircle != null) {
-            coloredCircle.getBackground().setColorFilter(ContextCompat.getColor(getContext(), color), PorterDuff.Mode.SRC_IN);
-        }
-
-        return this;
-    }
 
     public AwesomeRecyclerViewDialog setTitleTextSize(int size) {
         if (tvTitle != null) {

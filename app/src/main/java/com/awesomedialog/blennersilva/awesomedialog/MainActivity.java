@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorToast;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeNoticeDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeRecyclerViewDialog;
@@ -79,15 +79,17 @@ public class MainActivity extends AppCompatActivity {
         Button btnWarning = findViewById(R.id.btnWarning);
         btnWarning.setOnClickListener(view -> showWarningDialog());
 
-        Button btnNotice = findViewById(R.id.btnNotice);
-        btnNotice.setOnClickListener(view -> showNoticeDialog());
+//        Button btnNotice = findViewById(R.id.btnNotice);
+//        btnNotice.setOnClickListener(view -> showNoticeDialog());
 
         Button btnSuccess = findViewById(R.id.btnSuccess);
         btnSuccess.setOnClickListener(view -> showSuccessDialog());
     }
 
     private void showErrorDialog() {
-        new AwesomeErrorDialog(this).setButtonText(getString(R.string.dialog_ok_button)).show().getWindow().setLayout(400, ViewGroup.LayoutParams.WRAP_CONTENT);
+        new AwesomeErrorToast(this).setTitle("Error!").setMessage("Access Denied").setButtonText("Retry")
+                .setErrorButtonClick(() -> {
+                }).showToast(5000);
     }
 
     private void showInfoDialog() {
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         dialog.hide();
                     }
                 }).setNegativeButtonClick(dialog::hide);
-        dialog.show().getWindow().setLayout(670,420);
+        dialog.show().getWindow().setLayout(670, 420);
         dialog.show().getWindow().setGravity(Gravity.TOP);
 
 
