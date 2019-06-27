@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         setContentView(R.layout.activity_main);
         animalNames.add("Horse");
         animalNames.add("Cow");
@@ -86,10 +88,18 @@ public class MainActivity extends AppCompatActivity {
         btnSuccess.setOnClickListener(view -> showSuccessDialog());
     }
 
+    public void onWindowFocusChanged(boolean hasFocus) {
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
     private void showErrorDialog() {
-        new AwesomeErrorToast(this).setTitle("Error!").setMessage("Access Denied").setButtonText("Retry")
-                .setErrorButtonClick(() -> {
-                }).showToast();
+        runOnUiThread(() -> {
+            new AwesomeErrorToast(getApplicationContext()).setTitle("Error!")
+                    .setButtonText("Retry").setMessage("Access Denied")
+                    .setErrorButtonClick(() -> {
+                    }).showToast();
+        });
+
     }
 
     private void showInfoDialog() {
@@ -113,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showProgressDialog() {
-        new AwesomeProgressDialog(this).show().getWindow().setLayout(600, ViewGroup.LayoutParams.WRAP_CONTENT);
+        new AwesomeProgressDialog(this).show().getWindow().setLayout(400, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     private void showWarningDialog() {
