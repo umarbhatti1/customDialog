@@ -47,7 +47,6 @@ public class AwesomePinDialog extends AwesomeDialogBuilder<AwesomePinDialog> {
             if (selectedYes != null) {
                 selectedYes.exec();
             }
-            hide();
         });
 
         return this;
