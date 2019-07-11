@@ -188,7 +188,6 @@ public class AwesomeInfoDialog extends AwesomeDialogBuilder<AwesomeInfoDialog> {
             neutralButton.setTextColor(ContextCompat.getColor(getContext(), textColor));
             neutralButton.setVisibility(View.VISIBLE);
         }
-
         return this;
     }
 

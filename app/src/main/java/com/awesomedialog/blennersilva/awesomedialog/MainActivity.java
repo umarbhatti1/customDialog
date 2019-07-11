@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorToast;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeNoticeDialog;
-import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomePinDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeRecyclerViewDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeWarningDialog;
@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         Button btnWarning = findViewById(R.id.btnWarning);
         btnWarning.setOnClickListener(view -> showWarningDialog());
 
-//        Button btnNotice = findViewById(R.id.btnNotice);
-//        btnNotice.setOnClickListener(view -> showNoticeDialog());
+        Button btnNotice = findViewById(R.id.btnNotice);
+        btnNotice.setOnClickListener(view -> showNoticeDialog());
 
         Button btnSuccess = findViewById(R.id.btnSuccess);
         btnSuccess.setOnClickListener(view -> showSuccessDialog());
@@ -123,7 +123,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showProgressDialog() {
-        new AwesomeProgressDialog(this).show().getWindow().setLayout(400, ViewGroup.LayoutParams.WRAP_CONTENT);
+        new AwesomePinDialog(this)
+                .setTitle("Enter Pin TO Unlock")
+                .setNegativeButtonText("cancel")
+                .setPositiveButtonText("ok")
+                .show()
+                .getWindow()
+                .setLayout(300, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     private void showWarningDialog() {

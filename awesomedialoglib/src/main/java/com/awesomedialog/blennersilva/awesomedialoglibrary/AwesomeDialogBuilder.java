@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public abstract class AwesomeDialogBuilder<T extends AwesomeDialogBuilder> {
     private ImageView dialogIcon;
     private TextView tvTitle;
     private TextView tvMessage;
+    private EditText editText;
     private RelativeLayout coloredCircle;
     private Context context;
 
@@ -78,6 +80,7 @@ public abstract class AwesomeDialogBuilder<T extends AwesomeDialogBuilder> {
         tvTitle = findView(R.id.dialog_title);
         tvMessage = findView(R.id.dialog_message);
         coloredCircle = findView(R.id.colored_circle);
+        editText = findView(R.id.dialog_Pin);
         setTitleTextSize(23);
         setMessageTextSize(23);
     }
@@ -101,6 +104,14 @@ public abstract class AwesomeDialogBuilder<T extends AwesomeDialogBuilder> {
     public T setTitle(CharSequence title) {
         if (tvTitle != null) {
             tvTitle.setText(title);
+        }
+
+        return (T) this;
+    }
+
+    public T setPin(CharSequence pin) {
+        if (editText != null) {
+            editText.setText(pin);
         }
 
         return (T) this;
