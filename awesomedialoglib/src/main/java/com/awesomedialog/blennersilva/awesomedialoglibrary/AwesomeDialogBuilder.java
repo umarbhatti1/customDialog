@@ -15,7 +15,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -166,15 +165,6 @@ public abstract class AwesomeDialogBuilder<T extends AwesomeDialogBuilder> {
         try {
             if (context instanceof Activity) {
                 if (!((Activity) context).isFinishing()) {
-                    dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
-                    int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN;
-                    dialog.getWindow().getDecorView().setSystemUiVisibility(uiOptions);
-                    dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
                     dialog.show();
                 }
             } else {
@@ -233,5 +223,4 @@ public abstract class AwesomeDialogBuilder<T extends AwesomeDialogBuilder> {
     public void setContext(Context context) {
         this.context = context;
     }
-
 }
